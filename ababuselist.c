@@ -116,8 +116,10 @@ uint32_t convertIP( uchar *src )
                                 {
                                   byte3 = val;
                                   ptr = (char*) &nAddr;
-                                  sprintf( ptr, "%c%c%c%c", byte0, byte1,
-                                           byte2, byte3 );
+                                  ptr[ 0 ] = byte0;
+                                  ptr[ 1 ] = byte1;
+                                  ptr[ 2 ] = byte2;
+                                  ptr[ 3 ] = byte3;
                                 }
                               else
                                 fprintf( stderr, "G:Failed to convert %s: "
@@ -355,8 +357,8 @@ int processLine( uchar *src )
                                                              "prior->next: "
                                                              "%08x next: "
                                                              "%08x\n",
-                                                             priorAddr->next,
-                                                             nextAddr );
+                                                             (uint32_t) priorAddr->next,
+                                                             (uint32_t) nextAddr );
                                                   priorAddr->next = thisAddr;
                                                 }
                                               nextAddr->prior = thisAddr;
@@ -568,7 +570,7 @@ int main( int argc, uchar* argv[] )
                         }
                       else
                         {
-                          fprintf( stderr, "Error reading file: %s  offset: %d"
+                          fprintf( stderr, "Error reading file: %s  offset: %ld"
                                    "  errno: %d\n", filename,
                                    desiredPos, errno );
                           retVal = 6;
