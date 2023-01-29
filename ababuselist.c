@@ -357,8 +357,8 @@ int processLine( uchar *src )
                                                              "prior->next: "
                                                              "%08llx next: "
                                                              "%08llx\n",
-                                                             priorAddr->next,
-                                                             nextAddr );
+                                                             (uint64_t) priorAddr->next,
+                                                             (uint64_t) nextAddr );
                                                   priorAddr->next = thisAddr;
                                                 }
                                               nextAddr->prior = thisAddr;
