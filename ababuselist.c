@@ -355,8 +355,8 @@ int processLine( uchar *src )
                                                     fprintf( stderr, "List "
                                                              "mismatch!!! "
                                                              "prior->next: "
-                                                             "%08x next: "
-                                                             "%08x\n",
+                                                             "%08p next: "
+                                                             "%08p\n",
                                                              priorAddr->next,
                                                              nextAddr );
                                                   priorAddr->next = thisAddr;
