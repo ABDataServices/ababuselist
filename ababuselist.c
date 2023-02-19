@@ -274,7 +274,7 @@ int processLine( uchar *src )
                   /*
                    * Locate the separator for the second and third fields
                    */
-                  if ( ( *ptr == '\"' && ( endPtr = strstr( ptr, "\","
+                  if ( ( *ptr == '"' && ( endPtr = strstr( ptr, "\","
                                                            ) )  != NULL )
                        || ( ( endPtr = strchr( ptr, ',' ) ) != NULL ) )
                     {
