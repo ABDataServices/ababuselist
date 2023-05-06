@@ -1,26 +1,21 @@
 /*************************************************************************
- *
- * Confidential Trade Secret
- * Copyright (c) 2022 AB Data Services, Oakland Park Florida, USA,
- * as an unpublished work.  All rights reserved.
- *
+ * Copyright (c) 2022-23, AB Data Services, Oakland Park Florida, USA,
+ * as an unpublished work.  
  *************************************************************************
  *
  * Module Name:
- *   $Source: $
+ *   $Source: ababuselist.c $
  *
  * Creator:
- *   $Author: $
- *   $Date: $
+ *   $Author: eric $
+ *   $Date: 2023-05-06 13:18:37-04:00 
  *
  * Purpose:
- *   $Description: $
+ *   This program reads the IP4 addresses blocked by Smoothwall firewall
+ *   in order to generate a list without duplicate addresses for upload
+ *   to abuseipdb.com, which limits uploads to 10,000 lines and also 2MiB
+ *   maximum file size.
  *
- * Revision history:
- *
- *   $Header: $
- *
- *   $Log: $
  ************************************************************************/
 
 #include <stdio.h>
@@ -30,6 +25,15 @@
 #include <errno.h>
 #include <string.h>
 #include <arpa/inet.h>
+
+#define COPYRIGHT_SLUG \
+  "Copyright (c) 2023, AB Data Services, as an unpublished work.\nAll rights reserved worldwide.\n"
+#define VERSION_NUMBER "$ 4 $"
+/*
+ * Extract from the character after the first space and before the last space
+ */
+#define ExtractVersion( x )    ( strchr( x, ' ' ) + 1 )
+#define ExtractVersionLen( x ) ( strrchr( x, ' ' ) - ( strchr( x, ' ' ) + 1 ) )
 
 /*
  * abuseipdb maximum limits
